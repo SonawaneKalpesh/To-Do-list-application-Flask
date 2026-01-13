@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Task {% endblock %}
+
+{% block content %}
+    <div class="task-box">
+        <h2>Tasks</h2>
+        <form action="{{ url_for('tasks.add_tasks') }}" method="post" class="task-form">
+            <input type="text" name="text" placeholder="New Task" required>
+            <button type="submit" class="btn">Add</button>
+        </form>
+
+        {% if tasks %}
+        <form action="{{ url_for()}}" method="post"></form>
+    </div>
