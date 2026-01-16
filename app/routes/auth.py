@@ -1,28 +1,22 @@
-from flask import Blueprint, render_template,request, redirect, url_for, request, flash, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 
 auth_bp = Blueprint('auth', __name__)
 
-USER_CREDENTIALS = {
-    'username': 'admin',
-    'password': 'password'
+USER = {
+    "username": "admin",
+    "password": "admin"
 }
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-
-        if username == USER_CREDENTIALS['username'] and password == USER_CREDENTIALS['password']:
-            session['user'] = username
-            flash('Login successful!', 'success')
-        else:
-            flash('Invalid credentials. Please try again.', 'danger')
-    
+        if request.form['username'] == USER['username'] and request.form['password'] == USER['password']:
+            session['user'] = USER['username']
+            return redirect(url_for('tasks.view_tasks'))
+        flash("Invalid login", "danger")
     return render_template('login.html')
 
 @auth_bp.route('/logout')
 def logout():
     session.pop('user', None)
-    flash('You have been logged out.', 'info')
     return redirect(url_for('auth.login'))
