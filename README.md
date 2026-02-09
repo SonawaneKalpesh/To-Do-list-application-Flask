@@ -1,7 +1,7 @@
 # To-Do-list-application-Flask
 
-![alt text](image.png)
+![home page ](app/static/css/image.png)
 home page 
 
-![alt text](image-1.png)
+![loging page](app/static/css/image-1.png)
 loging page
